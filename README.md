@@ -82,6 +82,8 @@ Use one streaming capture client at a time. A source-holding keeper is not a str
 
 A reboot is useful to test task startup, driver retention and reacquisition after sign-in. It cannot demonstrate that the device will **never** disappear again. Follow the [reboot checklist](docs/reboot-validation.md). The original investigation verified a normal image and a running sign-in task, but did not reboot the machine during the session.
 
+`Verify-CameraSetup.ps1` performs read-only task, keeper-identity and driver/presence checks. Run it from the checkout used by the installed task. It does not open a capture stream and cannot certify visual correctness or permanence.
+
 ## Privacy and redistribution
 
 Generated state and logs stay local and are ignored by Git. They can contain local paths, process metadata or Windows task/account information; do not add them when sharing results. The published report deliberately contains technical results rather than raw evidence files. Builds, downloaded tools, vendor driver backups, screenshots and traces are also ignored.

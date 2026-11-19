@@ -25,6 +25,8 @@ A restart can check that the selected driver persists, the sign-in task starts t
 4. Confirm that the physical integrated camera remains present and the driver is still Microsoft in Device Manager.
 5. Check for exactly one keeper/supervisor using its local state file and Task Manager. Do not publish that machine-local state file.
 
+Run `Verify-CameraSetup.ps1` from the installed checkout for read-only task, worker-identity and driver/presence checks. It cannot certify the visual image.
+
 Test sleep/wake and a later cold boot separately. Keep failures and successful cases distinct rather than repeatedly changing unrelated settings.
 
 ## If it fails
