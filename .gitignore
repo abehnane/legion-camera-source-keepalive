@@ -1,0 +1,34 @@
+# Build products, downloaded tools and machine-local runtime state
+**/bin/
+**/obj/
+.build/
+.tools/
+.vs/
+helper_logs/
+camera_helper_state.json
+camera_helper.lock
+*.user
+*.suo
+
+# Do not publish private diagnostics or vendor material
+deep_trace/
+re_analysis/
+driver_backup/
+*.etl
+*.evtx
+*.log
+*.jsonl
+*.pfx
+*.pem
+*.key
+*.dll
+*.exe
+*.sys
+*.cat
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.dmp
+.env
+.env.*
