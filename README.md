@@ -12,6 +12,8 @@ The tested combination kept the physical camera connected and produced a normal 
 
 **2026-11-21 follow-up:** Windows had reselected the Sonix driver, which again delivered zero-filled frames. Restoring the Microsoft driver restored the independent preview. Camo was then fully uninstalled, and the user confirmed a normal live image with the independent helper alone. See the [green-preview follow-up](docs/green-preview-followup.md) for measurements, restored diagnostic settings and remaining Windows Camera limits.
 
+The [AMD/Windows Camera update check](docs/update-check-2026-11-21.md) found that the installed AMD driver already matches the version currently offered for the 5800H, and the Store offered no Camera update on this device. No matching published green-preview fix was identified.
+
 ## What this repository contains
 
 | Component | Purpose |
