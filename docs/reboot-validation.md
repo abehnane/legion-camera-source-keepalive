@@ -39,7 +39,7 @@ Test sleep/wake and a later cold boot separately. Keep failures and successful c
 
 Use `stop_camera_helper.bat` to stop the keeper, or `remove_camera_helper_startup.bat` to remove automatic startup. Neither action restores a separately changed camera driver.
 
-## Status at publication
+## Status including follow-up checks
 
 | Check | Result |
 |---|---|
@@ -48,6 +48,8 @@ Use `stop_camera_helper.bat` to stop the keeper, or `remove_camera_helper_startu
 | Holder survives tested capture-client exits | Confirmed in bounded tests |
 | Sign-in task installed and started | Confirmed on the investigated machine |
 | Single supervised keeper | Confirmed |
-| Actual reboot/sign-out recovery | Not yet tested |
+| Actual reboot | One user-triggered reboot: task, driver and physical-device presence verified; image not visually checked in that test |
+| Sign-out recovery | Not tested separately |
+| Camo-free capture and live preview | Confirmed after Camo app/service/virtual-driver removal on 2026-11-21 |
 | Sleep/wake / long-term permanence | Not established |
 | Windows Camera / meeting-app compatibility | Windows Camera still green; meeting apps untested |

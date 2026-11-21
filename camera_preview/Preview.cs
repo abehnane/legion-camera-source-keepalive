@@ -57,11 +57,13 @@ static partial class Program
                             if(Interlocked.CompareExchange(ref pending,1,0)!=0)continue;
                             Bitmap? bitmap=null;
                             try{
-                                bitmap=DecodeYuy2Sample(sample,(int)width,(int)height);
+                                bitmap=DecodeYuy2Sample(sample,(int)width,(int)height,out var allZero);
                                 var next=bitmap;var frameNumber=frames;
                                 form.BeginInvoke(()=>{
                                     var old=picture.Image;picture.Image=next;old?.Dispose();
-                                    status.Text=$"Physical integrated camera | {width}×{height} YUY2 | frame {frameNumber} | CPU conversion | no recording";
+                                    status.Text=allZero
+                                        ? "Camera delivered an entirely zero-filled frame. Check the camera driver; the tested working driver is Microsoft USB Video Device."
+                                        : $"Physical integrated camera | {width}×{height} YUY2 | frame {frameNumber} | CPU conversion | no recording";
                                     Interlocked.Exchange(ref pending,0);
                                 });
                                 bitmap=null;
@@ -84,7 +86,7 @@ static partial class Program
         picture.Image?.Dispose();
     }
 
-    static Bitmap DecodeYuy2Sample(IntPtr sample,int width,int height)
+    static Bitmap DecodeYuy2Sample(IntPtr sample,int width,int height,out bool allZero)
     {
         IntPtr buffer=IntPtr.Zero;
         Native.Check(Native.Method<Native.GetBuffer>(sample,41)(sample,out buffer),"Get video buffer");
@@ -94,6 +96,7 @@ static partial class Program
             try{if(length<(uint)(width*height*2))throw new Exception("Short YUY2 frame.");yuy2=new byte[width*height*2];Marshal.Copy(bytes,yuy2,0,yuy2.Length);}
             finally{Native.Method<Native.Simple>(buffer,4)(buffer);}
         }finally{Native.Release(ref buffer);}
+        allZero=yuy2.AsSpan().IndexOfAnyExcept((byte)0)<0;
         var pixels=new byte[width*height*4];
         static byte Clip(int v)=>(byte)Math.Clamp(v,0,255);
         for(int i=0,j=0;i<yuy2.Length;i+=4,j+=8){

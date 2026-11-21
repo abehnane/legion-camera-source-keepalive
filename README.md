@@ -8,7 +8,9 @@ The tested combination kept the physical camera connected and produced a normal 
 2. A small helper that retains a Media Foundation camera source without requesting video frames.
 3. A software preview that converts native YUY2 frames on the CPU.
 
-**Windows Camera's own preview still showed green. Other video-call apps and recovery after reboot have not been verified.** Holding a source cannot guarantee that physically absent hardware will reconnect.
+**Windows Camera's own preview still shows green. Other video-call apps remain unverified.** One reboot passed startup/driver/device-presence checks. Holding a source cannot guarantee that physically absent hardware will reconnect.
+
+**2026-11-21 follow-up:** Windows had reselected the Sonix driver, which again delivered zero-filled frames. Restoring the Microsoft driver restored the independent preview. Camo was then fully uninstalled, and the user confirmed a normal live image with the independent helper alone. See the [green-preview follow-up](docs/green-preview-followup.md) for measurements, restored diagnostic settings and remaining Windows Camera limits.
 
 ## What this repository contains
 

@@ -24,5 +24,6 @@ $drivers=@(foreach($camera in $cameras){
     KeeperIdentityVerified=$workerVerified
     MatchingPhysicalCamerasPresent=$cameras.Count
     DriverSummary=$drivers
+    UsesTestedMicrosoftDriver=($drivers.Count -gt 0 -and @($drivers|Where-Object {$_.Provider -ne 'Microsoft' -or $_.Inf -ne 'usbvideo.inf'}).Count -eq 0)
     VisualPreviewCheck='Confirm a normal live image manually; these checks cannot certify image quality or permanent recovery.'
 }|Format-List

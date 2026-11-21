@@ -4,6 +4,8 @@
 
 Investigation date: 2026-11-19. A normal live image was confirmed in the independent CPU-converted preview, without replacing the module again or opening the laptop during this investigation. A non-recording source holder kept the physical camera available during the validated client-lifetime tests. The user still saw green in Windows Camera itself, including an isolated test.
 
+Follow-up: one user-triggered reboot later passed driver/startup/device-presence checks. On 2026-11-21, a driver re-selection caused the independent preview to become green again; restoring the Microsoft driver restored its image. Camo was then fully removed and a normal Camo-free preview was verified. See the [follow-up report](green-preview-followup.md). Historical test limits below describe the initial investigation.
+
 This is a working software path and a connection-lifetime workaround. It is not a conclusive diagnosis or permanent repair of an electrical, firmware or driver fault.
 
 ## Tested configuration
@@ -74,7 +76,7 @@ The broad trace decoded 75,122 events and reported 23,439 lost events; the narro
 
 The retained setup selects Microsoft's UVC driver, keeps one non-recording source holder running and uses the CPU YUY2 preview. A sign-in task with Limited privileges, five-second delay, no execution-time limit and duplicate prevention was registered and started. One supervised keeper was verified active.
 
-Actual sign-out, reboot, sleep/wake and long-term stability remain unverified. The keeper can retry source acquisition when the camera is enumerated; it cannot guarantee recovery of an electrically absent module. It holds camera access and may increase power use or affect camera-use indicators. It does not read frames in keeper mode.
+At initial publication, sign-out, reboot, sleep/wake and long-term stability were unverified. A subsequent user-triggered reboot passed driver/startup/device-presence checks; the live picture was not checked during that reboot test. Sign-out, sleep/wake and long-term stability remain unverified. The keeper can retry source acquisition when the camera is enumerated; it cannot guarantee recovery of an electrically absent module. It holds camera access and may increase power use or affect camera-use indicators. It does not read frames in keeper mode.
 
 No BIOS flash, physical work, permanent USB-power change, blanket update block or reboot was performed. No specific mainboard component was established as faulty. Obtaining the working picture contradicts a blanket claim that this module cannot produce an image, but does not rule out an intermittent hardware or power-transition issue.
 
